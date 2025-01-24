@@ -44,8 +44,6 @@ get_pop_data <- function(
   pan_hscp_name,
   years_of_interest,
   aggregation_variables,
-  pop_file = "/conf/linkage/output/lookups/Unicode/Populations/Estimates/DataZone2011_pop_est_2011_2020.rds",
-  geog_lookup = "/conf/linkage/output/lookups/Unicode/Geography/HSCP Locality/HSCP Localities_DZ11_Lookup_20200825.rds",
   age_group_breaks = c(seq(0,90,5), Inf),
   file_tag = NULL
 
@@ -54,6 +52,20 @@ get_pop_data <- function(
   # ***************************************************************************
   # Parameters #### 
   # ***************************************************************************
+  
+  
+  pop_file <- list.files("/conf/linkage/output/lookups/Unicode/Populations/Estimates/", 
+             pattern = "DataZone2011_pop_est_\\d{4}_\\d{4}.rds") %>%  # List all files with matching format
+    max() %>%  # Select most recent one
+    paste0(
+      "/conf/linkage/output/lookups/Unicode/Populations/Estimates/",.) %>%  # paste full file path and read in
+    readRDS()
+  
+  geog_lookup <- list.files("/conf/linkage/output/lookups/Unicode/Geography/HSCP Locality/", 
+             pattern = ".rds") %>% 
+    paste0(
+      "/conf/linkage/output/lookups/Unicode/Geography/HSCP Locality/",.) %>% 
+    readRDS()
 
   # age cols selected by default; age_group added later so cannot select here
   selection_variables <- aggregation_variables[!(aggregation_variables %in% c("age","age_group"))]
