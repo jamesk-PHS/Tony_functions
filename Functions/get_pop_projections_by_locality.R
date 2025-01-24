@@ -3,7 +3,6 @@
 # to estimate projections at locality level by taking the mean
 # proportions of the hscp across the localities
 get_pop_projections_by_locality <- function(
-  hscp_pop_proj_file = "/conf/linkage/output/lookups/Unicode/Populations/Projections/HSCP2019_pop_proj_2018_2043.rds",
   pop_file,
   years_of_interest,
   years_past, # these are the years on which the pop split across localities is based
@@ -19,6 +18,14 @@ get_pop_projections_by_locality <- function(
   )
   source("/conf/linkage/output/anthoc03/R/functions/add_age_group_col.R")
   source("/conf/linkage/output/anthoc03/R/functions/get_pop_data.R")
+  
+  # Automating fetching and loading of this filepath
+  hscp_pop_proj_file <- list.files("/conf/linkage/output/lookups/Unicode/Populations/Projections/", 
+             pattern = "HSCP2019_pop_proj_\\d{4}_\\d{4}.rds") %>% 
+    paste0(
+      "/conf/linkage/output/lookups/Unicode/Populations/Projections/",.) %>% 
+    readRDS()
+  
   
   
   # start of function body ####
