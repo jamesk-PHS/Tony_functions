@@ -7,9 +7,15 @@ suppressPackageStartupMessages(
 )
 
 get_pop_cols <- function(){
+
+  latest_file <- list.files("/conf/linkage/output/lookups/Unicode/Populations/Estimates/", 
+                            pattern = "DataZone2011_pop_est_\\d{4}_\\d{4}.rds") %>% 
+    max()
+    
+  
   return(
     readRDS(
-      "/conf/linkage/output/lookups/Unicode/Populations/Estimates/DataZone2011_pop_est_2011_2020.rds"
+      paste0("/conf/linkage/output/lookups/Unicode/Populations/Estimates/",latest_file)
     ) %>% colnames()
   )
 }
