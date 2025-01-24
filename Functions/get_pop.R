@@ -41,8 +41,7 @@ get_pop <- function(area = "Scotland",
     left_join(loc_dz11, by = "datazone2011") %>% 
     rename(age90 = age90plus)
   
-  
-  cols_containing_x <-
+    cols_containing_x <-
     sapply(pop_raw, function(x)
       area %in% unique(x))
   
