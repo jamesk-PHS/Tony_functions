@@ -1,11 +1,17 @@
-get_fy_from_date <- function(cal_date){
-  jan_to_march <- lubridate::month(cal_date)%/%4==0
-  return(
-    ifelse(jan_to_march,
-           lubridate::year(cal_date)-1,
-           lubridate::year(cal_date))
-  )
-}
+# Depreciated due to other functionality centrally controlled by PHS available. 
+# See PHS Methods package here for more:
+# https://github.com/Public-Health-Scotland/phsmethods#readme
+# https://scotland.shinyapps.io/phs-learnr-phsmethods/#section-introduction
+
+
+#get_fy_from_date <- function(cal_date){
+#  jan_to_march <- lubridate::month(cal_date)%/%4==0
+#  return(
+#    ifelse(jan_to_march,
+#           lubridate::year(cal_date)-1,
+#           lubridate::year(cal_date))
+#  )
+# }
 
 # cal_dates <- lubridate::as_date(paste0("2020-",1:12,"-",1))
 # 
