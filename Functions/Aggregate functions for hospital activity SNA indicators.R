@@ -31,7 +31,10 @@ data_wrangle_fun  <- function(file_name, ind_col, ind_name, apply_filter){
   if (apply_filter){
     
     ind_col <- file_name %>% 
-      filter(., council %in% c("North Lanarkshire","South Lanarkshire")) %>% 
+      filter(., council %in% c("North Lanarkshire","South Lanarkshire"),
+             # Below necessary as of April 25 update
+             area_treated != "All",
+             simd_quintile != "All") %>% 
       # Dates
       mutate(month = phsmethods::extract_fin_year(month),
              month = str_sub(month, 1,4)) %>%
@@ -91,7 +94,10 @@ age_breakdown <- function(file_name, ind_col, ind_name, apply_filter){
   if (apply_filter){
     
     ind_col <- file_name %>% 
-      filter(., council %in% c("North Lanarkshire","South Lanarkshire")) %>% 
+      filter(., council %in% c("North Lanarkshire","South Lanarkshire"),
+             # Below necessary as of April 25 update
+             area_treated != "All",
+             simd_quintile != "All") %>% 
       # Dates
       mutate(month = phsmethods::extract_fin_year(month),
              month = str_sub(month, 1,4)) %>%
@@ -151,7 +157,10 @@ SIMD_breakdown <- function(file_name, ind_col, ind_name, apply_filter){
   if (apply_filter){
     
     ind_col <- file_name %>% 
-      filter(., council %in% c("North Lanarkshire","South Lanarkshire")) %>% 
+      filter(., council %in% c("North Lanarkshire","South Lanarkshire"),
+             # Below necessary as of April 25 update
+             area_treated != "All",
+             simd_quintile != "All") %>% 
       # Dates
       mutate(month = phsmethods::extract_fin_year(month),
              month = str_sub(month, 1,4)) %>%
